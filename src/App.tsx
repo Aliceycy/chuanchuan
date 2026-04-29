@@ -23,7 +23,7 @@ export default function App() {
   }, [countdown]);
 
   return (
-    <main className="relative w-full h-screen bg-[#660000] overflow-hidden flex items-center justify-center">
+    <main className="relative w-full min-h-[100dvh] bg-[#660000] overflow-hidden flex items-center justify-center">
       {/* Background Image */}
       <div 
         id="main-bg"
