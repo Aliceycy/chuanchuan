@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", serif;
+  --font-chinese: "Ma Shan Zheng", cursive;
+
+  --color-chinese-red: #A30000;
+  --color-chinese-gold: #E5C36E;
+}
+
+body {
+  background-color: #990000;
+  margin: 0;
+  overflow: hidden;
+}
