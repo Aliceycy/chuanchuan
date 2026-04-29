@@ -28,7 +28,7 @@ export default function App() {
       <div 
         id="main-bg"
         className="absolute inset-0 z-0 pointer-events-none bg-[length:100%_100%] bg-no-repeat"
-        style={{ backgroundImage: 'url("/bgpic.jpg")' }}
+        style={{ backgroundImage: 'url("/bgpic.webp")' }}
       />
 
       <div id="content-container" className="relative z-10 text-center px-4 w-full">
