@@ -1,0 +1,49 @@
+name: Deploy to Gitee Pages
+
+on:
+  push:
+    branches:
+      - master # 当代码推送到 master 分支时触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Push to Gitee
+        env:
+          GITEE_USERNAME: ${{ secrets.GITEE_USERNAME }}
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          cd dist
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy to Gitee Pages via GitHub Actions"
+          # 强制推送到 Gitee 的 gh-pages 分支
+          git push --force https://$GITEE_USERNAME:$GITEE_TOKEN@gitee.com/$GITEE_USERNAME/chuanchuan.git master:gh-pages
+
+      - name: Trigger Gitee Pages Build
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          # 需要配置的 GitHub Secrets
+          gitee-username: ${{ secrets.GITEE_USERNAME }}
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          # 你的 Gitee 仓库路径
+          gitee-repo: ${{ secrets.GITEE_USERNAME }}/chuanchuan
+          # 部署分支
+          branch: gh-pages
